@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars Web Scraping</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container-fluid">
+    <div class="jumbotron text-center">
+      <h1>Mars Facts and Stuff!</h1>
+      <p>Press "Scrape Mars" button to get up to date data.</p>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape Mars</a></p>
+    </div>
+    <h2>Featured Article</h2>
+    <p><strong>{{MarsContent.article_title}}</strong></p>
+    <p>{{MarsContent.article_description}}</p>
+    
+    <div class="container-fluid">
+      <div class="row">
+          <div class="col-md-8">
+            <h2>Featured picture</h2>
+            <img src="{{MarsContent['featured_url']}}">
+          </div>
+          <div class="col-md-4">
+            <div class="card card-body">
+              <h2>Current Mars Weather</h2>
+              <p>{{MarsContent['mars_weather']}}</p>
+            </div>
+            <br>
+            <h2>Mars Facts</h2>
+            <p>{{MarsContent.table|safe}}</p>
+          </div>
+      </div>
+    </div>
+    <h2>Hemisphere Images</h2>
+    {% for HemiUrl in MarsContent.Hemisphere_Images %}
+      <img class="card-img-top" src="{{ HemiUrl.img_url }}"/>
+      <h4 class="card-text">{{HemiUrl.title}}</h3>
+    {% endfor %}
+
+  </div>
+  </div>
+</body>
+
+</html>
